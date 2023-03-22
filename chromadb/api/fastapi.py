@@ -19,6 +19,8 @@ from chromadb.api.models.Collection import Collection
 
 class FastAPI(API):
     def __init__(self, settings):
+        settings.validate('chroma_server_host')
+        settings.validate('chroma_server_http_port')
         url_prefix = "https" if settings.chroma_server_ssl_enabled else "http"
         self._api_url = f"{url_prefix}://{settings.chroma_server_host}:{settings.chroma_server_http_port}/api/v1"
 

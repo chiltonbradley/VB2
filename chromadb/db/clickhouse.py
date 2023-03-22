@@ -53,6 +53,8 @@ class Clickhouse(DB):
         self._conn = None
         self._idx = Hnswlib(settings)
         self._settings = settings
+        settings.validate('clickhouse_host')
+        settings.validate('clickhouse_port')
 
     def _init_conn(self):
         common.set_setting("autogenerate_session_id", False)
